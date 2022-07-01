@@ -17,8 +17,17 @@ app.get('/', (req,res)=>res.send("Your todo app is running. navigate to /todo"))
 app.use(identifyError,handleError)
 
 function identifyError(req,res,next){
-    const err = new Error("Endpoint Not Found")
+    const methods = req.method.match(/GET|POST|DELETE|PATCH?/gi)
+    let err = {message: methods? `Requested resource: ${req.url} Not Found`: `${req.method} is not implemented`}
     err.status = 404
+    res.status(err.status || 500).json({
+        error: {
+             message: err.message,
+             statusCode: err.status ,
+             redirect: true,
+             to: `${process.env.HOST}/todo`
+        }
+     })
     next(err)
 }
 function handleError(err,req,res){
