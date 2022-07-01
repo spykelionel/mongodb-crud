@@ -7,7 +7,7 @@ const port = process.env.PORT || 3000
 
 const server = http.createServer(app)
 
-const uri = process.env.HOST;
+const uri = process.env.HOST || `mongodb://localhost:27017`;
 mongoose.connect(uri, {useUnifiedTopology: true, useNewUrlParser: true}, (err)=>{
     if(err){
         console.log("Couldn't connnect mongodb")
@@ -24,5 +24,4 @@ server.listen(port, (err)=>{
     }
     console.clear();
     console.log("Server is running at", port)
-    // console.log(new  Date().toISOString())
 })
