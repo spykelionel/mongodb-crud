@@ -1,0 +1,7 @@
+{
+  "name": "mongodb-crud",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "spykelion <ndilionel6@gmail.com>",
+  "license": "MIT"
+}
