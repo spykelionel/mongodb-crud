@@ -1,7 +1,7 @@
 # Simple todo api.
 
 # Setting up the local server.
-1. Install Mongodb. Get a free version from ![Mongodb official](https://www.mongodb.com/try/download/community)
+1. Install Mongodb. Get a free version from [Mongodb official](https://www.mongodb.com/try/download/community)
 2. Create a mongodb connection with the connection string `mongodb://localhost:27017`
 3. Clone this repository and run `yarn` or `npm install`
 
