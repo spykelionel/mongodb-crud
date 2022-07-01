@@ -66,15 +66,15 @@ module.exports = {
   deleteOne: async (req, res) => {
     await Todo.deleteOne({ _id: req.params.id })
       .then((result) => {
-        if (result) {
-          res.status(200).send(result);
+        if (result.deletedCount == 1) {
+           return res.status(200).send(result);   
         }
         res.status(404).json({
           message: "Todo Not found",
         });
-      })
+      }) 
       .catch((err) =>
-        res.status(501).json({
+       res.status(501).json({
           ...err,
           message: "Not found",
         })
