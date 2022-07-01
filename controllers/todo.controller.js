@@ -1,18 +1,15 @@
 const Todo = require("../models/Todo");
 
-
 module.exports = {
   create: async (req, res) => {
     Todo?.exists({ title: req.body.title })
       .then(async (result) => {
         if (!result) {
           try {
-            const Todo = new Todo({
+            const todo = new Todo({
                 ...req.body,
-                password: hash,
-                avatar: req?.file?.path ?? "none",
               });
-              await Todo
+              await todo
                 .save()
                 .then((result) => {
                   return res.status(201).send(result);
@@ -58,11 +55,11 @@ module.exports = {
           });
         });
     } catch (error) {
-      new Error(error);
       res.status(501).json({
         ...error,
         info: "Server Error. Error getting the Todo",
       });
+      throw new Error(error);
     }
   },
 
