@@ -1,24 +1,17 @@
 const express = require('express')
 const morgan = require('morgan')
-const cors = require('cors')
-const compression = require('compression')
-const helmet = require('helmet')
-const userRoutes = require('./routes/user.routes')
+const todoRoutes = require('./routes/todo.routes')
 const path = require('path');
 
 const app = express()
 
-
 app.use(morgan('dev'))
-app.use(cors({origin: ["*"],}))
-app.use(compression())
-app.use(helmet())
 app.use(express.static(path.join(__dirname)));
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
 
-app.use('/user', userRoutes)
-app.get('/', (req,res)=>res.send("Welcome to hackaway. "))
+app.use('/todo', todoRoutes)
+app.get('/', (req,res)=>res.send("Your todo app is running. navigate to /todo"))
 
 // handle route errors here
 app.use(identifyError,handleError)
