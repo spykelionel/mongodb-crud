@@ -93,12 +93,12 @@ module.exports = {
               }
             )
               .then((result) =>
-                res.status(201).send({
+                res.status(200).send({
                   ...result,
                   info: "successfully updated Todo",
                 })
               )
-              .catch((err) => res.status(409).send(err));
+              .catch((err) => res.status(301).send(err));
           } catch (error) {
             console.log(error);
           }
